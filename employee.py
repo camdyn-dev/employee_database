@@ -2,7 +2,14 @@
 # Probably gonna write a space function which just writes new lines
 
 
-employee_database = []
+employee_database = [
+    {"name": "Jeff",
+     "age": 10,
+     "salary": 0},
+    {"name": "Joe",
+     "age": 25,
+     "salary": 25000}
+]
 
 
 def main():
@@ -66,8 +73,26 @@ def employee_print():
         main()
 
     else:
-        print("No employees")
+        print("lmao ur workforce is 2021 style: G O N E")
         main()
+
+
+def employee_age_delete():
+    print("-- Ageism --")
+    global employee_database    # Using this so I can reassign it to the new list
+    post_ageism = []
+
+    lower_range = int(input("Enter the lower end of ages: "))
+    upper_range = int(input("Enter the upper end of ages: "))
+
+    for employee in employee_database:
+        if employee["age"] < lower_range or employee["age"] > upper_range:
+            post_ageism.append(employee)    # append instead of push? M A D G E
+        else:
+            print(f"{employee['name']} removed")
+    employee_database = post_ageism
+
+    main()
 
 
 main()
