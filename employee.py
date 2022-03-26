@@ -1,6 +1,4 @@
-# I don't even remotely remember how OOP works in Python, so I'm just going to write helper functions instead
-# Probably gonna write a space function which just writes new lines
-
+# Might update this to use SQL so it's more like a real-world app, but this is just a fun project so I probably won't
 
 employee_database = [
     {"name": "Jeff",
@@ -36,7 +34,7 @@ def front_end_handler(user_choice):
         employee_print()    # Print all employees
 
     elif user_choice == 3:
-        employee_age_delete()    # Delete employee by age range
+        employee_ageism()    # Delete employee by age range
 
     elif user_choice == 4:
         employee_salary_update()    # Update employee salary
@@ -77,22 +75,52 @@ def employee_print():
         main()
 
 
-def employee_age_delete():
-    print("-- Ageism --")
-    global employee_database    # Using this so I can reassign it to the new list
-    post_ageism = []
+def employee_ageism():
+    try:
+        print("-- Ageism --")
+        global employee_database    # Using this so I can reassign it to the new list
+        # Now, the only problem is that it can possibly be slower for new lists, but I don't imagine it'll
+        # be much slower. Honestly, could be faster
 
-    lower_range = int(input("Enter the lower end of ages: "))
-    upper_range = int(input("Enter the upper end of ages: "))
+        post_ageism = []
 
-    for employee in employee_database:
-        if employee["age"] < lower_range or employee["age"] > upper_range:
-            post_ageism.append(employee)    # append instead of push? M A D G E
+        lower_range = int(input("Enter the lower end of ages: "))
+        upper_range = int(input("Enter the upper end of ages: "))
+
+        for employee in employee_database:
+            if employee["age"] < lower_range or employee["age"] > upper_range:
+                post_ageism.append(employee)    # append instead of push? M A D G E
+            else:
+                print(f"{employee['name']} removed")
+        employee_database = post_ageism
+
+        main()
+
+    except ValueError:
+        print("ERROR: Invalid input")
+        employee_ageism()
+
+
+def employee_salary_update():
+    try:
+        print("-- Salary Updater --")
+        found = False
+        employee_name = input("Enter the employee's name: ")
+        employee_salary = int(input(f"Enter {employee_name}'s new salary: "))
+        for employee in employee_database:
+            if employee_name == employee["name"]:
+                employee["salary"] = employee_salary
+                found = True
+
+        if found:
+            print(f"{employee_name}'s salary was successfully updated.")
+            main()
         else:
-            print(f"{employee['name']} removed")
-    employee_database = post_ageism
+            print("We couldn't find that employee. Try again.")
+            employee_salary_update()
 
-    main()
+    except ValueError:
+        print("ERROR: Invalid input")
 
 
 main()
