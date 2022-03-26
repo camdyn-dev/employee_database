@@ -1,3 +1,7 @@
+# I don't even remotely remember how OOP works in Python, so I'm just going to write helper functions instead
+# Probably gonna write a space function which just writes new lines
+
+
 employee_database = []
 
 
@@ -8,7 +12,7 @@ def main():
 5: Close program""")
 
         user_choice = int(input("Enter your choice: "))
-        while user_choice < 0 or user_choice >5:
+        while user_choice < 0 or user_choice > 5:
             print("Invalid input, try again")
             user_choice = int(input("Enter your choice: "))
         front_end_handler(user_choice)
@@ -37,13 +41,33 @@ def front_end_handler(user_choice):
 
 def employee_add():
     try:
+        print("-- Enter employee information --")
         employee_name = input("Enter the employee's name: ")
         employee_age = int(input(f"Enter {employee_name}'s age: "))
         employee_salary = int(input(f"Enter {employee_name}'s salary: "))
 
+        employee_database.append({"name": employee_name, "age": employee_age, "salary": employee_salary})
+        print(f"{employee_name} has been successfully added to the database.")
+
+        main()
+
     except ValueError:
         print("ERROR: Invalid input")
+        print("Try again...")
 
+        employee_add()
+
+
+def employee_print():
+    if employee_database:
+        print("-- Employee list --")
+        for employee in employee_database:
+            print(f"{employee['name']}: {employee['age']} years old, makes ${employee['salary']} yearly.")
+        main()
+
+    else:
+        print("No employees")
+        main()
 
 
 main()
