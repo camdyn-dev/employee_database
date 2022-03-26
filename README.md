@@ -1,5 +1,4 @@
-When I first started programming, I was stuck in that stage where you're spending 3x more time on material searching
-compared to actually writing code. Of course, there were a bunch of fantastic resources right in my face (automate the
+When I first started programming, I was stuck in that stage where you're spending 80% of your time searching for materials instead of actually coding. Of course, there were a bunch of fantastic resources right in my face (automate the
 boring stuff, python crash course), but I was stubborn and kept looking, eventually finding this course on Udemy with
 like 600 reviews.
 
